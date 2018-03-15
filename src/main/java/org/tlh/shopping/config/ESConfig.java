@@ -8,6 +8,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 @Configuration
 @Order(Integer.MAX_VALUE-1)
 public class ESConfig {
@@ -22,6 +24,12 @@ public class ESConfig {
 	public RestHighLevelClient restHighLevelClient(){
 		RestHighLevelClient client=new RestHighLevelClient(RestClient.builder(new HttpHost(host, port)));
 		return client;
+	}
+	
+	@Bean
+	public ObjectMapper objectMapper(){
+		ObjectMapper objectMapper=new ObjectMapper();
+		return objectMapper;
 	}
 	
 }

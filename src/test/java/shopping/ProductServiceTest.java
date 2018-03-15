@@ -20,9 +20,9 @@ public class ProductServiceTest {
 	@Test
 	public void save(){
 		Product product=new Product();
-		product.setName("佳洁士牙膏");
-		product.setDescription("效果就是好，白白的");
-		product.setPrice(34f);
+		product.setName("云南白药牙膏");
+		product.setDescription("这个牙膏有点贵啊");
+		product.setPrice(45f);
 		
 		this.productService.insert(product);
 	}
