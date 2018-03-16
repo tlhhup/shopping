@@ -31,22 +31,34 @@
 			<th>商品描述</th>
 			<th>商品价格</th>
 		</tr>
-		<tbody>
-			<c:forEach varStatus="status" items="${requestScope.pageInfo.content }" var="product">
-				<tr>
-					<td>${status.count }</td>
-					<td>${product.name }</td>
-					<td>${product.description }</td>
-					<td>${product.price }</td>
-				</tr>
-			</c:forEach>
-		</tbody>
+		<c:forEach varStatus="status" items="${requestScope.pageInfo.content }" var="product">
+			<tr>
+				<td>${status.count }</td>
+				<td>${product.name }</td>
+				<td>${product.description }</td>
+				<td>${product.price }</td>
+			</tr>
+		</c:forEach>
 		<tr>
 			<c:if test="${not requestScope.pageInfo.isFirst }">
-				<a href="search?number=${ requestScope.pageInfo.number-1 }">上一页</a>
+				<c:choose>
+					<c:when test="${ not empty requestScope.productName }">
+						<a href="search?number=${ requestScope.pageInfo.number-1 }&name=${requestScope.productName}">上一页</a>
+					</c:when>
+					<c:otherwise>
+						<a href="?number=${ requestScope.pageInfo.number-1 }">上一页</a>
+					</c:otherwise>
+				</c:choose>
 			</c:if>
 			<c:if test="${not requestScope.pageInfo.isLast }">
-				<a href="search?number=${ requestScope.pageInfo.number+1 }">下一页</a>
+				<c:choose>
+					<c:when test="${ not empty requestScope.productName }">
+						<a href="search?number=${ requestScope.pageInfo.number+1 }&name=${requestScope.productName}">下一页</a>
+					</c:when>
+					<c:otherwise>
+						<a href="?number=${ requestScope.pageInfo.number+1 }">下一页</a>
+					</c:otherwise>
+				</c:choose>
 			</c:if>
 		</tr>
 	</table>

@@ -66,7 +66,7 @@ public class PageInfo<T> {
 	}
 	
 	public int getFrom(){
-		return (this.number-1)*this.size;
+		return this.number*this.size;
 	}
 
 }

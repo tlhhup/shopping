@@ -1,7 +1,5 @@
 package org.tlh.shopping.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,10 +27,12 @@ public class ProductController {
 	@Autowired
 	private ProductSearch productSearch;
 	
-	@RequestMapping(value="/search",method=RequestMethod.POST)
+	@RequestMapping(value="/search",method={RequestMethod.POST,RequestMethod.GET})
 	public String search(String name,Model model,@RequestParam(name="number",defaultValue="0") int number,@RequestParam(name="size",defaultValue="2")int size) throws Exception{
-		List<Product> products = this.productSearch.searchByName(name);
-		model.addAttribute("products", products);
+		PageInfo<Product> pageInfo = this.productSearch.searchByNameWithPage(name, number, size);
+		model.addAttribute("pageInfo", pageInfo);
+		//缓存查询条件
+		model.addAttribute("productName", name);
 		return "index";
 	}
 	
