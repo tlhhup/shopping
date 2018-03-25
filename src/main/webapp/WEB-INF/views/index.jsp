@@ -7,6 +7,7 @@
 <title>首页</title>
 </head>
 <body>
+	<a href="${pageContext.request.contextPath}/SuggestionController/index">JS客户端</a>
 	<table style="margin: 0 atuo">
 		<tr>
 			<td colspan="4">
